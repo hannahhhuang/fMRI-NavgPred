@@ -5,17 +5,20 @@ This is the link to our [processed navigation data](https://www.dropbox.com/scl/
 ### File Structure:
 ```
 processed navigation data
-|-- subject (s02): each participant
+|-- subject (s02): Each participant
 | |-- behavioral data
-| | |-- run number: direction information for each experiment
+| | |-- run_001: Direction information for each experiment
+| | |-- run_002
+| | |-- ...
 | |
-| |-- imagingData_processed: processed into nifti format
-| | |-- run number: imaging data for each experiment
+| |-- ImagingData_processed: Processed into nifti format
+| | |-- run_001: Imaging data for each experiment
 | | | |-- xxx01.nii: 3D brain image for each sampling time (1.5s)
+| | | |-- ...
 | |
-| |-- imagingData_tifffile: processed into .tif format
-| | |-- runnumber.tif: each file is a 4D array of (Time, X, Y, Z),
-| | | each XYZ is the Entorhinal cortex after masking, with a sampling interval of 1.5s
+| |-- imagingData_tifffile: Processed into .tif format
+| | |-- run_001.tif: Each file is a 4D array of size (Time, X, Y, Z). Each (X,Y,Z) slice is the Entorhinal cortex imaging after masking, with a sampling interval of 1.5s
+| | |-- ...
 | |
 | |-- LEC.nii: Left Entorhinal cortex mask
 | |-- rLEC.nii: Left Entorhinal cortex mask resliced to the same resolution as the images
