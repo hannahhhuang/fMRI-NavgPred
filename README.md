@@ -1,6 +1,6 @@
 # fMRI-NavgPred
 ## Data
-This is the (raw dataset)[https://osf.io/swav5/files/osfstorage].
+This is the [raw dataset](https://osf.io/swav5/files/osfstorage).
 
 This is the link to our [processed navigation data](https://www.dropbox.com/scl/fi/pbojewluy0tz95jsmtfd5/processed-navigation-data.zip?rlkey=186anxv8wzj13im3eadpnonzo&dl=0).
 
