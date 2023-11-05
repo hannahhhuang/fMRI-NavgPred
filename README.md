@@ -2,13 +2,24 @@
 ## Data
 This is the link to our [processed navigation data](https://www.dropbox.com/scl/fi/pbojewluy0tz95jsmtfd5/processed-navigation-data.zip?rlkey=186anxv8wzj13im3eadpnonzo&dl=0).
 
-The data is in the following format:
+### File Structure:
+```
 processed navigation data
-- **Behavioral Data**: Contains information related to the participant's behavior during each experimental run.
-- **Imaging Data**: Two formats are provided here:
-  - **Processed NIfTI**: Standard format for storing neuroimaging data with `.nii` extension.
-  - **TIFF Files**: Each `.tif` file contains a 4D array with masked brain region data, with a 1.5-second interval between each time point.
-- **Cortical Masks**:
-  - `LEC.nii`: Mask file for the Left Entorhinal Cortex.
-  - `rLEC.nii`: Resliced version of the Left Entorhinal Cortex mask to align with the resolution of the imaging data.
-
+|-- subject (s02): each participant
+| |-- behavioral data
+| | |-- run number: direction information for each experiment
+| |
+| |-- imagingData_processed: processed into nifti format
+| | |-- run number: imaging data for each experiment
+| | | |-- xxx01.nii: 3D brain image for each sampling time (1.5s)
+| |
+| |-- imagingData_tifffile: processed into .tif format
+| | |-- runnumber.tif: each file is a 4D array of (Time, X, Y, Z),
+| | | each XYZ is the Entorhinal cortex after masking, with a sampling interval of 1.5s
+| |
+| |-- LEC.nii: Left Entorhinal cortex mask
+| |-- rLEC.nii: Left Entorhinal cortex mask resliced to the same resolution as the images
+|
+|-- s03
+| ...
+```
