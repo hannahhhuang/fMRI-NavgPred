@@ -4,15 +4,20 @@ This is the link to our [processed navigation data](https://www.dropbox.com/scl/
 
 The data is in the following format:
 processed navigation data
-    --subject (s02): 每个participant
-        -- behavioral data
-            -- run number: 每次实验的 direction 信息
-        -- imagingData_processed: 处理成了nifti 格式
-            -- run number: 每一次实验 的imaging data
-                -- xxx01.nii: 每一个采样时间(1.5s)的3d 大脑图像
-        -- imagingData_tifffile: 处理成了.tif 格式
-            -- runnumber.tif: 每个file是 (Time, X, Y, Z) 的 4D array，每个XYZ是经过mask之后的Entorhinal cortex, time 间隔1.5s 采样时间
-        -- LEC.nii: Left Entorhinal cortex mask
-        -- rLEC.nii: Left Entorhinal cortex mask after reslicing to same resolution as the images
-    -- s03
-    ...
+    |-- subject (s02): each participant
+    | |-- behavioral data
+    | | |-- run number: direction information for each experiment
+    | |
+    | |-- imagingData_processed: processed into nifti format
+    | | |-- run number: imaging data for each experiment
+    | | | |-- xxx01.nii: 3D brain image for each sampling time (1.5s)
+    | |
+    | |-- imagingData_tifffile: processed into .tif format
+    | | |-- runnumber.tif: each file is a 4D array of (Time, X, Y, Z),
+    | | | each XYZ is the Entorhinal cortex after masking, with a sampling interval of 1.5s
+    | |
+    | |-- LEC.nii: Left Entorhinal cortex mask
+    | |-- rLEC.nii: Left Entorhinal cortex mask resliced to the same resolution as the images
+    |
+    |-- s03
+    | ...
