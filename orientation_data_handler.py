@@ -50,28 +50,65 @@ class OrientationDataHandler:
         averages_df.to_csv(output_file, index=False)
 
 
-data_dir = '/Users/xingliu/Documents/processedNavigationData/s02/BehavioralData_s02'
+# data_dir = '/Users/xingliu/Documents/processedNavigationData/s04/BehavioralData_s04'
+#
+# output_dir = '/Users/xingliu/Documents/processedOutput/S04'
+#
+# # Create the output directory if it doesn't exist
+# if not os.path.exists(output_dir):
+#     os.makedirs(output_dir)
+#
+# # Create the file paths
+# file_paths = [os.path.join(data_dir, f's04_indoor_noBarrier_run{str(i).zfill(3)}.tsv') for i in range(7, 13)]
+#
+# start_time = 0
+# interval = 1.5
+#
+# # Process each file
+# for i in range(1, 7):
+#     file_path = file_paths[i - 1]
+#     processor = OrientationDataHandler(file_path)
+#
+#     output_filename = os.path.join(output_dir, f'processed_run00{i}.csv')
+#
+#     processor.write_orientations_to_file(output_filename, start_time, interval)
 
-output_dir = '/Users/xingliu/Documents/processedOutput'
+# Function to process a single subject
+# Function to process a single subject
+def process_subject(subject_number):
+    data_dir = f'/Users/xingliu/Documents/processedNavigationData/{subject_number}/BehavioralData_{subject_number}'
+    output_dir = f'/Users/xingliu/Documents/processedOutput/{subject_number}'
 
-# Create the output directory if it doesn't exist
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+    # Create the output directory if it doesn't exist
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
-# Create the file paths
-file_paths = [os.path.join(data_dir, f's02_outdoor_noBarrier_run00{i}.tsv') for i in range(1, 7)]
+    start_time = 0
+    interval = 1.5
+    output_file_counter = 1
+    processed_files = set()
+    # Iterate over possible run numbers
+    for run_num in range(1, 13):
+        for environment in ['indoor', 'outdoor']:
+            # Standardize barrier naming to lowercase
+            file_name = f'{subject_number}_{environment}_nobarrier_run{str(run_num).zfill(3)}.tsv'.lower()
+            file_path = os.path.join(data_dir, file_name)
 
-start_time = 0
-interval = 1.5
+            # Check and process if not already done
+            if os.path.exists(file_path.lower()) and file_name not in processed_files:
+                print(f"Processing: {file_name}")
+                processor = OrientationDataHandler(file_path)
+                output_filename = os.path.join(output_dir, f'processed_run{str(output_file_counter).zfill(3)}.csv')
+                processor.write_orientations_to_file(output_filename, start_time, interval)
+                output_file_counter += 1
+                processed_files.add(file_name)  # Mark as processed
+            else:
+                print(f"File not found or already processed: {file_path}")
+# Process all subjects from S05 to S22
+for subject_num in range(5, 23):
+    subject_code = f's{str(subject_num).zfill(2)}'
+    process_subject(subject_code)
 
-# Process each file
-for i in range(1, 7):
-    file_path = file_paths[i - 1]
-    processor = OrientationDataHandler(file_path)
-
-    output_filename = os.path.join(output_dir, f'processed_run00{i}.csv')
-
-    processor.write_orientations_to_file(output_filename, start_time, interval)
 
 
 
