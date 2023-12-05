@@ -40,11 +40,11 @@ class NIfTIConverter:
             print(f"Saved TIFF file at {output_path}")
 
 if __name__ == "__main__":
-    for i in range(2,23):
+    for i in range(3,23):
         if i==11:
             continue
         if i < 10:
             subject = "s0" + str(i)
         else:
             subject = "s" + str(i)
-        NIfTIConverter('./Navigation data/' + subject + '/ImagingData_' + subject + '_processed','./Navigation data/' + subject + '/rLEC.nii','./Navigation data/' + subject + '/ImagingData_' + subject + '_tifffile').convert()
+        NIfTIConverter('./Navigation data/' + subject + '/ImagingData_' + subject + '_processed','./Navigation data/' + subject + '/rREC.nii','./Navigation data/' + subject + '/ImagingData_' + subject + '_tifffile_right').convert()
